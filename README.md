@@ -21,8 +21,8 @@ Proje bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyebil
 ### 1. Projeyi Klonla
 
 ```bash
-git clone https://github.com/kullanici-adi/dijital-kartvizit.git
-cd dijital-kartvizit
+git clone https://github.com/mertalitosun/digital-card-public.git
+cd digital-card-public
 ```
 
 ### 2. Gerekli Bağımlılıkları Yükle
