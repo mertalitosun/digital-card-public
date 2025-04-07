@@ -55,7 +55,11 @@ SMTP_SUPPORT_PASS = yourPassword
 JWT_SECRET = infinitetag2024jwttoken
 ```
 
-### 5. Uygulamayı Başlat
+### 5. Klasör Yapılandırması
+- Ana dizine **uploads** klasörünü oluşturun.
+- **public/assets** altında **qrcodes** ve **contact** klasörlerini oluşturun.
+
+### 6. Uygulamayı Başlat
 ```bash
 npm start
 ```
