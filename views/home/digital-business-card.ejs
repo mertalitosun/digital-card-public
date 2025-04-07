@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="description" content="Dijital kartvizit nedir? Dijital kartvizit, NFC uyumluluğu ve profesyonel tasarımıyla iş dünyasında kolayca iletişim kurmanıza yardımcı olur.">
+    <meta name="keywords" content="dijital kartvizit, dijital iş kartı, NFC kartvizit, dijital kartvizit kullanımı, iş dünyasında dijital kartvizit">
+    <meta name="author" content="Dijital Kartvizit">
+    <link rel="stylesheet" href="/static/css/home-content.css">
+    <link rel="stylesheet" href="/static/css/home-footer.css">
+</head>
+
+<body>
+    <%- include('../partials/nav') %>
+    <div class="container mt-5">
+        <!-- Dijital Kartvizit Hakkında Bölüm -->
+        <section class="intro">
+            <div class="intro-text">
+                <h1>Dijital İşletme Kartları: İletişimi Kolaylaştırın ve Müşteri Deneyimini Güçlendirin</h1>
+                <p>
+                    Dijital işletme kartları, işletmenizin fiziksel kartvizitlerin dijital versiyonudur. QR kodu veya NFC teknolojisi kullanarak, müşterilerinize kolayca erişim imkânı sunar. Masa üstü standı ile birlikte, potansiyel müşterileriniz işletmenizi hızlıca öğrenebilir, Google yorumları ve sosyal medya hesaplarınıza kolayca yönlendirilebilir. Dijital işletme kartları, işletmenizin tanıtımını artırırken, daha iyi bir müşteri deneyimi sağlar.
+                </p>
+                <a href="/login" class="btn primary-btn">Kullanmaya Başla</a>
+            </div>
+            <div class="intro-image">
+                <img src="../../static/images/dijitalKartvizitHizmet.webp" alt="Dijital Kartvizit Görseli">
+            </div>
+        </section>
+
+        <!-- Dijital Kartvizit Neden Kullanılmalı? Bölümü -->
+        <section class="benefits">
+            <div class="benefit-item">
+                <h2>Çevre Dostu</h2>
+                <p>Kağıt tüketimini ortadan kaldırarak çevreye katkı sağlar.</p>
+            </div>
+            <div class="benefit-item">
+                <h2>Kolay Paylaşım</h2>
+                <p>QR kodu, NFC veya URL ile anında paylaşılabilir.</p>
+            </div>
+            <div class="benefit-item">
+                <h2>Her Zaman Yanınızda</h2>
+                <p>Telefonunuzda ya da bilgisayarınızda her zaman erişebilirsiniz.</p>
+            </div>
+            <div class="benefit-item">
+                <h2>Uygulama Gerektirmez</h2>
+                <p>Ekstra mobil uygulama yükü olmadan tarayıcı üzerinden yönetilebilir.</p>
+            </div>
+        </section>
+
+        <!-- NFC Hakkında Bilgiler -->
+        <section class="nfc-info">
+            <h2>NFC Nedir?</h2>
+            <p>
+                NFC (Yakın Alan İletişimi), cihazların birbirine çok yakın mesafelerde veri paylaşmasına olanak tanır. Dijital kartvizitlerinizle uyumlu NFC özellikli cihazlar ile hızlıca iletişim bilgilerinizi paylaşabilirsiniz.
+            </p>
+        </section>
+
+        <!-- Karşılaştırma Tablosu -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Diğer Dijital Kartvizitler ve Infinite Tag</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Diğer Dijital Kartvizit</th>
+                            <th>Infinite Tag Kartvizit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="bi bi-x-circle"></i> Tek profil</td>
+                            <td><i class="bi bi-check-lg"></i> Erişilebilir iki adet profil</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-x-circle"></i> Sınırlandırılmış bağlantı ekleme</td>
+                            <td><i class="bi bi-check-lg"></i> İstediğiniz sosyal medya ve bağlantı linkleri</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-x-circle"></i> -</td>
+                            <td><i class="bi bi-check-lg"></i> -</td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-x-circle"></i> -</td>
+                            <td><i class="bi bi-check-lg"></i> -</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    
+        <!-- Kullanmağa Başla Butonu -->
+        <section class="cta">
+            <h2>Dijital Kartvizit Kullanmaya Başlayın</h2>
+            <p>Dijital kartvizitlerinizi şimdi oluşturun ve iş dünyasında fark yaratın. İletişim bilgilerinizi kolayca paylaşın!</p>
+            <a href="/login" class="btn secondary-btn">Hemen Başla</a>
+        </section>
+    </div>
+
+    <%- include('../partials/home-footer') %>
+    <%- include('../partials/script') %>
+</body>
+
+</html>

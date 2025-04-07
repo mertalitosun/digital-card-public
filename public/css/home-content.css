@@ -1,0 +1,259 @@
+/* Genel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+}
+
+h2{font-weight: bold;}
+
+/* Başlangıç Bölümü */
+.intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    gap: 20px; 
+}
+
+.intro-text {
+    width: 50%;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.intro-text .primary-btn {
+    background-color: #009688;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.intro-text .primary-btn:hover {
+    background-color: #00796b;
+}
+
+.intro-image img {
+    max-width: 100%; 
+    height: auto;
+    border-radius: 10px;
+    max-width: 500px; 
+}
+
+/* Faydalar Bölümü */
+.benefits {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    gap: 20px; 
+}
+
+.benefit-item {
+    width: 23%;
+    background-color: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.benefit-item::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 5px;
+    background-color: #009688; 
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.benefit-item:hover {
+    cursor: pointer;
+    transform: translateY(-15px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+}
+
+.benefit-item:hover::before {
+    background-color: #00796b; 
+}
+
+.benefit-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #333; 
+}
+
+.benefit-item p {
+    margin: 0;
+    font-size: 1rem;
+    color: #555; 
+    line-height: 1.5;
+}
+
+/* Tablo */
+.comparison-table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.comparison-table th {
+    background: linear-gradient(to right, #12a7da, #097cd9);
+    color: white;
+    font-weight: bold;
+}
+
+.comparison-table td {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.comparison-table tr:hover td {
+    background-color: #f1f1f1;
+}
+
+.bi-x-circle {
+    font-size: 20px;
+    color: red;
+}
+
+.bi-check-lg {
+    font-size: 20px;
+    color: green;
+}
+
+/* NFC Bilgisi Bölümü */
+.nfc-info {
+    padding: 40px;
+    margin-bottom: 60px;
+}
+
+.nfc-info h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.nfc-info p {
+    font-size: 1.1rem;
+}
+
+.cta {
+    text-align: center;
+    background-color: #009688;
+    padding: 40px 20px;
+    color: white;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.cta h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.cta .secondary-btn {
+    background-color: #333;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.cta .secondary-btn:hover {
+    background-color: #555;
+}
+
+/* Button Stili */
+.btn {
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.primary-btn {
+    background-color: #009688;
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #00796b;
+}
+
+.secondary-btn {
+    background-color: #333;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #555;
+}
+
+/* Responsive Tasarım */
+@media screen and (max-width: 768px) {
+    .intro {
+        display: block;
+        text-align: center;
+    }
+    
+    .intro-text {
+        width: 100%;
+        margin-bottom: 20px; 
+    }
+
+    .intro-image {
+        width: 100%;
+        text-align: center;
+    }
+
+    .intro-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .benefits {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .benefit-item {
+        width: 80%;
+        margin-bottom: 20px; 
+    }
+}

@@ -1,0 +1,78 @@
+.contact-buttons .btn {
+    width: 25%;
+    margin: 10px 1%;
+    padding: 15px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.business-link{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-button,.business-link{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.contact-buttons .btn:hover, .business-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+}
+
+.btn-telephone {
+    background: linear-gradient(135deg, #3d405b, #6b728e);
+    color: #ffffff;
+}
+.btn-telephone:hover {
+    background: linear-gradient(135deg, #4a516e, #7d84a2);
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25d366, #59e189);
+    color: #ffffff;
+}
+.btn-whatsapp:hover {
+    background: linear-gradient(135deg, #2ed574, #6de89c);
+}
+
+.btn-person-lines {
+    background: linear-gradient(135deg, #f2930d, #f5ad45);
+    color: #ffffff;
+}
+.btn-person-lines:hover {
+    background: linear-gradient(135deg, #f39e26, #f6ba62);
+}
+
+.btn-qr {
+    background: linear-gradient(135deg, #212529, #495057);
+    color: #ffffff;
+}
+.btn-qr:hover {
+    background: linear-gradient(135deg, #30343a, #60676e);
+}
+
+@media screen and (max-width: 600px) {
+    .contact-buttons{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .contact-buttons .btn {
+        width: 100%;
+        margin: 10px 2.5%;
+    }
+}

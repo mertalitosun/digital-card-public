@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Müşteri Listesi</h2>
+        
+        <div class="d-flex alignt-items-center justify-content-end">
+            <div class="pagination mt-4">
+                <% if (totalPages > 1) { %>
+                  <nav>
+                    <ul class="pagination pagination-sm justify-content-center">
+                      <% for (let i = 1; i <= totalPages; i++) { %>
+                        <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                          <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                        </li>
+                      <% } %>
+                    </ul>
+                  </nav>
+                <% } %>
+            </div>
+        </div>
+        <!-- Tablo -->
+        <div class="totalUser">
+            <small>Toplam Kullanıcı Sayısı: <%= totalUsers %></small>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User Kod</th>
+                        <th scope="col">Ad Soyad</th>
+                        <th scope="col">E-Posta</th>
+                        <th scope="col">Kart Sayısı</th>
+                        <th scope="col">Profil Sayısı</th>
+                        <th scope="col">Detaylar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach((user) => { %>
+                        <tr>
+                            <th scope="row"><%= user.id %></th>
+                            <th scope="row"><%= user.userCode %></th>
+                            <td><%= user.name + " " + user.surname %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.cardCount %></td> 
+                            <td><%= user.profileCount %></td> 
+                            <td><a href="/admin/customer-details/<%= user.id %>" class="btn btn-primary btn-sm">Detaylar</a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

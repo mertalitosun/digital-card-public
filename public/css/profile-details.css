@@ -1,0 +1,113 @@
+ /* Genel Arka Plan ve Kenarlıklar */
+ .bg-light {
+    background-color: #f8f8f8 !important;
+}
+
+.shadow {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+.required{
+    color: red;
+}
+/* Profil Resmi ve Arkaplan Resmi */
+.img-fluid {
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.img-fluid:hover {
+    transform: scale(1.05);
+}
+
+.form-control {
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-control:focus {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    border-color: #007bff;
+}
+
+/* Buton */
+.btn-dark {
+    background-color: #333;
+    border-color: #333;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.btn-dark:hover {
+    background-color: #444;
+    border-color: #444;
+}
+
+/* Kartlar ve Bölümler */
+.card {
+    border-radius: 16px;
+    border: none;
+}
+
+.card-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #f0f0f5;
+    color: #333;
+    padding: 15px;
+}
+
+.card-body {
+    padding: 20px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Profil Formu */
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Header ve Genel Yazılar */
+h2, h4 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+}
+
+/* Stil Düzenlemeleri */
+.w-100 {
+    width: 100% !important;
+}
+
+/* Modern Input Alanları */
+.form-control {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #ccc;
+    background-color: #fff;
+}
+
+/* Hover Efektleri */
+.form-control[type="file"]:hover {
+    cursor: pointer;
+}

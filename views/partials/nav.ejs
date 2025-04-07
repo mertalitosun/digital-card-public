@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/">INFINITE TAG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+              <% if (!isAuth) { %>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/">Anasayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/#services">Hizmetlerimiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/login">Giriş Yap</a>
+                </li>
+              <% } %>
+              <% if (isAuth) { %>
+                  <% if (isAdmin) { %>
+                      <li class="nav-item dropdown me-5">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <%= fullName %>
+                          </a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/admin/customers">Müşteriler</a></li>
+                              <li><a class="dropdown-item" href="/admin/cards">Kartlar</a></li>
+                              <li><a class="dropdown-item" href="/admin/panel">Panel</a></li>
+                              <li><a class="dropdown-item" href="/password-change?userCode=<%= userCode %>">Şifre Değiştir</a></li>
+                              <li><a class="dropdown-item" href="/logout">Çıkış Yap</a></li>
+                          </ul>
+                      </li>
+                  <% } else { %>
+                      <li class="nav-item dropdown me-5">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <%= fullName %>
+                          </a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/dashboard/my-account">Hesabım</a></li>
+                              <li><a class="dropdown-item" href="/password-change?userCode=<%= userCode %>">Şifre Değiştir</a></li>
+                              <li><a class="dropdown-item" href="/logout">Çıkış Yap</a></li>
+                          </ul>
+                      </li>
+                  <% } %>
+              <% } %>
+          </ul>
+      </div>
+  </div>
+</nav>

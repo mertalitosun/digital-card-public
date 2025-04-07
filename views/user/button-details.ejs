@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/static/css/card-details.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded border border-0 p-5">
+            <h1 class="text-dark mb-3">Yeni Buton Ekle</h1>
+            <form method="POST">
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="text" class="form-label">Buton Adı</label>
+                        <input type="text" class="form-control shadow-sm" id="text" name="text" placeholder="Yeni buton adı" required value="<%= button.text %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="url" class="form-label">Link</label>
+                        <input type="text" class="form-control shadow-sm" id="url" name="url" placeholder="Yeni buton link" required value="<%= button.url %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="color" class="form-label">Renk</label>
+                        <input type="color" class="form-control shadow-sm" id="color" name="color" required value="<%= button.color %>">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

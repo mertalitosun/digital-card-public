@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+  <%- include('../partials/profileViewCss') %>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- Arkaplan Resmi ve Profil Resmi -->
+    <div class="background-img" id="background-container" style="background-image: url('../../<%= profile.backgroundImage %>');">
+      <input type="hidden" value="<%= profile.backgroundImage %>" id="backgroundImage">
+      <img src="../../<%= profile.profileImage %>" alt="Profile Image" class="profile-img">
+    </div>
+  
+    <!-- Ad-Soyad ve Unvan -->
+    <div class="card-body">
+      <div class="personal-information">
+        <h1 class="mt-3 name-surname"><%= profile.name + " " + profile.surname %></h1>
+        <% if (profile.biography) { %>
+         <p class="biography text-muted">''<%= profile.biography %>''</p>
+        <% } %>
+        <% if (profile.company) { %>
+          <h6 class="text-muted">
+            <a href="<%= profile.companyUrl ? profile.companyUrl : "#" %>" class="company"><%= profile.company %> <i class="bi bi-box-arrow-up-right"></i></a>
+          </h6>
+        <% } %>
+        <% if (profile.career) { %>
+          <h4 class="career"><%= profile.career %></h4>
+        <% } %>
+      </div>
+
+      <!-- İletişim Butonları -->
+      <div>
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3">
+            <a href="tel:<%= profile.phone %>" class="contact-button btn btn-telephone">
+              <i class="bi bi-telephone"></i>
+              <p>Ara</p>
+            </a>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <a href="https://wa.me/<%= profile.whatsapp %>" target="_blank" class="contact-button btn btn-whatsapp">
+              <i class="bi bi-whatsapp"></i>
+              <p>Whatsapp</p>
+            </a>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <a href="../..<%= profile.vCardPath %>" class="contact-button btn btn-person-lines">
+              <i class="bi bi-person-lines-fill"></i>
+              <p>Rehbere Ekle</p>
+            </a>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <a href="#" class="contact-button btn btn-qr" onclick="showQRCode()">
+              <i class="bi bi-qr-code-scan"></i>
+              <p>Qr</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Business Linkler -->
+      <div class="business-links">
+        <div class="row">
+          <% profile.buttons.forEach(button => { %>
+            <div class="col-12 col-md-6 contact-buttons">
+              <a href="<%= button.url %>" class="business-link btn" style="background-color: <%= button.color %>;">
+                <%= button.text %>
+              </a>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+      <!-- Sosyal Medya Linkleri -->
+      <div class="social-links">
+        <% profile.sections.forEach(section => { %>
+          <div class="card shadow-sm mb-4 section-card">
+            <div class="section-card-header">
+              <h3 class="section-title"><%= section.title %></h3>
+            </div>
+            <div class="section-card-body">
+              <% section.details.forEach(detail => { %>
+                <% if (detail.url && detail.url.trim() !== "") { %>
+                  <div class="detail-item">
+                    <a href="<%= detail.url %>" target="_blank" class="detail-link">
+                      <div class="social-item">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-link-45deg social-icon"></i>
+                          <div>
+                            <div class="detail-name"><%= detail.name %></div>
+                            <div class="detail-value"><%= detail.value %></div>
+                          </div>
+                        </div>
+                        <span 
+                          class="material-symbols-outlined copy-icon" 
+                          onclick="copyToClipboard('<%= detail.url %>',event)" 
+                          title="Kopyala">
+                          content_copy
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                <% } else { %>
+                  <div class="detail-item">
+                    <div class="social-item">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-info-circle social-icon"></i>
+                        <div>
+                          <div class="detail-name"><%= detail.name %></div>
+                          <div class="detail-value"><%= detail.value %></div>
+                        </div>
+                      </div>
+                      <span 
+                        class="material-symbols-outlined copy-icon" 
+                        onclick="copyToClipboard('<%= detail.value %>',event)" 
+                        title="Kopyala">
+                        content_copy
+                      </span>
+                    </div>
+                  </div>
+                <% } %>
+              <% }); %>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+
+    <!-- qr-modal -->
+    <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="qrModalLabel"><%= profile.name + " " + profile.surname %></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex justify-content-center">
+            <div id="qrcode">
+              <img src="../..<%= profile.qrCodePath %>" alt="" width="200" height="200">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('../partials/footer') %>
+  <%- include('../partials/script') %>
+  <script>
+    function copyToClipboard(url,event) {
+      event.preventDefault();
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Link kopyalandı!');
+      });
+    }
+    function showQRCode() {
+      new bootstrap.Modal(document.getElementById('qrModal')).show();
+    }
+  </script>
+</body>
+</html>

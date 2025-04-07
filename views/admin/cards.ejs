@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/static/css/customer-details.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-5">
+        <% if (message && message.text) { %>
+            <div class="alert alert-<%= message.type %>">
+                <%= message.text %>
+            </div>
+        <% } %>
+        <div class="mb-4">
+            <h4 class="text-primary mb-1">Kartlar</h4>
+            <!-- Yeni Kart Ekle Butonu -->
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="pagination mt-4">
+                <% if (totalPages > 1) { %>
+                  <nav>
+                    <ul class="pagination pagination-sm justify-content-center">
+                      <% for (let i = 1; i <= totalPages; i++) { %>
+                        <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                          <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                        </li>
+                      <% } %>
+                    </ul>
+                  </nav>
+                <% } %>
+              </div>
+              <a href="/admin/create-card" class="btn btn-outline-success btn-sm">Yeni Kart Ekle</a>
+            </div>
+            <div class="totalCard">
+              <small>Toplam Kart Sayısı: <%= totalCards %></small>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Aksiyon</th>
+                            <th>Kart Kodu</th>
+                            <th>Ürün/Hizmet</th>
+                            <th>Kart Sahibi</th>
+                            <th>Bağlı Profil</th>
+                            <th>Kart Durumu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% cards.forEach((card) => { %>
+                            <tr>
+                                <td>
+                                    <a href="#" class="btn btn-danger btn-sm openModal" data-cardCode="<%= card.cardCode %>">Sil</a>
+                                </td>
+                                <td><%= card.cardCode %></td>
+                                <td><%= card.cardType %></td>
+                                <td>
+                                    <% if (card.user) { %>
+                                        <a href="/admin/customer-details/<%= card.user.id %>"><%= card.user.name + " " + card.user.surname %></a>
+                                    <% } else { %>
+                                        <span>Kullanıcı Yok</span>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <% if (card.profile) { %>
+                                        <a href="/dashboard/customer-profile-details/<%= card.profile.profileCode %>"><%= card.profile.name %></a>
+                                    <% } else { %>
+                                        <span>Profil Yok</span>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <div class="cardStatus <%= card.isActive ? "statusActive" : "statusInActive" %>">
+                                        <%= card.isActive ? "Aktif" : "Pasif" %>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- Silme Onay Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteModalLabel">Silme İşlemini Onayla</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Bu öğeyi silmek istediğinizden emin misiniz?
+                </div>
+                <div class="modal-footer">
+                  <form id="deleteForm">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                    <button type="submit" class="btn btn-danger" id="deleteCardBtn">Sil</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <%- include('../partials/script') %>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const deleteCardButton = document.querySelectorAll(".openModal");
+      
+          deleteCardButton.forEach((button) => {
+            button.addEventListener("click", (event) => {
+              event.preventDefault();
+      
+              // Modal için gerekli parametreleri al
+              const cardCode = button.getAttribute("data-cardCode");
+              
+              const deleteCardBtn = document.getElementById("deleteCardBtn");
+
+
+              // Modal'ı göster
+              const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+              modal.show();
+      
+              try{
+                deleteCardBtn.addEventListener("click", async function (event){
+                  event.preventDefault();
+                  const response = await fetch(`/admin/cards?cardCode=${cardCode}`,{
+                    method: "DELETE"
+                  });
+      
+                  if(response.ok){
+                    alert("İşlem Başarılı");
+                    button.closest("tr").remove();
+                    modal.hide(); 
+                  }else{
+                    const errorText = await response.text();
+                    alert(`Silme İşlemi Başarısız: ${errorText}`)
+                  }
+                })
+              }catch(err){
+                console.log("Silme İşlemi Başarısız", err);
+                alert("Silme İşlemi Sırasında Bir Hata Oluştu! Lütfen Daha Sonra Tekrar Deneyin.")
+              }
+            });
+          });
+        });
+      </script>
+</body>
+</html>

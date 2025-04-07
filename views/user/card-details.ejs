@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/static/css/card-details.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-4">
+        <h2>Kart Detayı</h2>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Kart ID: <span id="cardId"><%= card.cardCode %></span></h5>
+                <input type="hidden" value="<%= card.user.userCode %>" id="customerCode">
+                <p class="card-text">Kartın bağlı olduğu profil: <b><%= card.profile ? card.profile.title : "Karta bağlı profil yok"%></b></p>
+
+                <div id="profile-selection">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mt-2">
+                            <select class="form-select" id="profileSelect">
+                                <option value="">Profil Seçin</option>
+                                <% user.profiles.forEach(profile => { %>
+                                    <option value="<%= profile.profileCode %>"><%= profile.title %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-3 mt-2">
+                            <button class="btn btn-primary w-100" id="assignProfileBtn">Profili Ata</button>
+                        </div>
+                        <div class="col-12 col-md-3 mt-2">
+                            <button class="btn btn-danger w-100" id="clearProfileBtn">Profil Temizle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+    <script>
+        document.getElementById('assignProfileBtn').addEventListener('click', async function () {
+            const selectedProfileId = document.getElementById('profileSelect').value;
+            const cardId = document.getElementById('cardId').textContent;
+            const customerCode = document.getElementById('customerCode').value;
+
+            if (selectedProfileId) {
+                try {
+                    const response = await fetch(`/dashboard/customer-card-details/${cardId}?customerCode=${customerCode}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            profileCode: selectedProfileId
+                        }),
+                    });
+
+                    if (response.ok) {
+                        alert('Profil başarıyla atandı!');
+                        window.location.reload();
+                    } else {
+                        const errorData = await response.json();
+                        alert(`Hata: ${errorData.message || 'İşlem başarısız oldu.'}`);
+                    }
+                } catch (error) {
+                    alert('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+                    console.error('Hata:', error);
+                }
+            } else {
+                alert('Lütfen bir profil seçin.');
+            }
+        });
+
+        document.getElementById('clearProfileBtn').addEventListener('click', async function () {
+            const cardId = document.getElementById('cardId').textContent;
+            const customerCode = document.getElementById('customerCode').value;
+
+            try {
+                const response = await fetch(`/dashboard/customer-card-details/${cardId}?customerCode=${customerCode}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        profileCode: null, 
+                    }),
+                });
+
+                if (response.ok) {
+                    alert('Profil başarıyla kaldırıldı!');
+                    window.location.reload();
+                } else {
+                    const errorData = await response.json();
+                    alert(`Hata: ${errorData.message || 'İşlem başarısız oldu.'}`);
+                }
+            } catch (error) {
+                alert('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+                console.error('Hata:', error);
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/static/css/panel.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-5">
+        <% if (message && message.text) { %>
+            <div class="alert alert-<%= message.type %>">
+                <%= message.text %>
+            </div>
+        <% } %>
+            
+        <div class="panel-cards">
+            <div class="panel-card" id="users">
+                <h1><%= totalCustomers %></h1>
+                <h5>Kullanıcı</h5>
+            </div>
+
+            <div class="panel-card" id="cards">
+                <h1><%= totalCards %></h1>
+                <h5>Kart</h5>
+            </div>
+
+            <div class="panel-card" id="activeCards">
+                <h1><%= activeTotalCards %></h1>
+                <h5>Aktif Kart</h5>
+            </div>
+
+            <div class="panel-card" id="inActiveCards">
+                <h1><%= inActiveTotalCards %></h1>
+                <h5>Pasif Kart</h5>
+            </div>
+
+            <div class="panel-card" id="profiles">
+                <h1><%= totalProfiles %></h1>
+                <h5>Profil</h5>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../partials/script') %>
+</body>
+</html>

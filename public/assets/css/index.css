@@ -1,0 +1,98 @@
+a{
+    text-decoration: none;
+}
+.background-img {
+    width: 100%;
+    height: 250px;
+    background: url('') center/cover no-repeat;
+    position: relative;
+}
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    position: absolute;
+    bottom: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: cover;
+}
+.biography{
+   word-break: break-all;
+}
+.company{
+    color: #ff8800;
+}
+.career{
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #e1f0ff;
+    color: #3699ff;
+
+}
+.card-body {
+    margin-top: 100px;
+}
+.personal-information{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.business-links{
+    margin: 10px 0px;
+}
+.business-link{
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    width: 100% !important;
+}
+.business-links a{
+    color: #fff;
+}
+.backOfficeBtn{
+    background-color: #ff8800;
+}
+.memberBtn{
+    background-color: #b27e28;
+}
+.name-surname{
+    word-spacing: 2px;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: #a6a2a2;
+    padding: 20px 0px 5px;
+}
+
+footer h5 {
+    font-weight: bold;
+}
+
+footer a{
+    color: #a6a2a2;
+    text-decoration: solid;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer .row div {
+    flex: 1;
+    padding: 20px;
+}
+.footer-hakkimizda{
+    color: #a6a2a2;
+}
+footer .text-center {
+    text-align: center;
+    font-size: 0.9rem;
+}

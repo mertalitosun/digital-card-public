@@ -1,0 +1,48 @@
+/* Kart Container */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+/* Başlık */
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 20px;
+}
+
+/* Kart Başlığı */
+.card-title {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Kartın Bağlı Olduğu Profil Bilgisi */
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+.card-text b {
+    font-weight: 600;
+    color: #007bff;
+}
+
+/* Önerilen bölümler */
+.suggested-sections{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style-type: none;
+}

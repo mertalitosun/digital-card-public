@@ -1,0 +1,66 @@
+.card {
+    background-color: #f9f9f9;
+    border: none;
+}
+
+.table {
+    margin-bottom: 0;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    padding: 12px 15px;
+}
+
+.table th {
+    background-color: #cdcdcd;
+    color: #495057;
+    font-weight: 600;
+}
+
+.table td {
+    background-color: #fff;
+    color: #495057;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.modal-content {
+    border-radius: 8px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-footer {
+    border-top: 1px solid #e9ecef;
+}
+
+.cardStatus{
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+.statusActive{
+    background-color: rgb(13, 210, 13);
+}
+.statusInActive{
+    background-color: red;
+}

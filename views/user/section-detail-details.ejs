@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+  <link rel="stylesheet" href="/static/css/card-details.css">
+</head>
+<body>
+  <%- include('../partials/nav') %>
+
+  <div class="container">
+    <h1>Detaylar</h1>
+    <form method="POST">
+      <% if (section.details && section.details.length > 0) { %>
+        <% section.details.forEach(detail => { %>
+          <div class="card mb-3 shadow-lg rounded border border-0">
+            <div class="text-end">
+              <a href="#" class="btn btn-outline-danger btn-sm openModal" data-sectionCode="<%= section.sectionCode %>" data-profileCode="<%= profile.profileCode %>" data-detailCode="<%= detail.detailCode %>">Sil</a>
+            </div>
+            <div class="form-group mb-3">
+              <label>Detay Adı</label>
+              <input type="text" id="name_<%= detail.name %>" name="details[<%= detail.name %>][name]"  value="<%= detail.name %>" 
+              class="form-control" required>
+            </div>
+
+            <div class="form-group mb-3">
+              <label>Detay Link</label>
+              <input type="text" id="name_<%= detail.name %>" name="details[<%= detail.name %>][url]"  value="<%= detail.url %>" 
+              class="form-control">
+            </div>
+
+            <div class="form-group mb-3">
+              <label>Detay Açıklaması</label>
+              <input type="text" id="value_<%= detail.name %>" name="details[<%= detail.name %>][value]" value="<%= detail.value %>" 
+              class="form-control" >
+            </div>
+          </div>
+        <% }); %>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+      <% } else { %>
+        <div class="alert alert-danger">
+          Gösterilecek Detay Yok
+          <a href="/dashboard/create-section-detail?sectionCode=<%= section.sectionCode %>&profileCode=<%= profile.profileCode %>" class="btn btn-link btn-sm mx-1">Detay Ekle</a>
+        </div>
+      <% } %>
+    </form>
+  </div>
+
+  <!-- Silme Onayı Modali -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Silme İşlemini Onayla</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Bu öğeyi silmek istediğinizden emin misiniz?
+        </div>
+        <div class="modal-footer">
+          <form id="deleteForm">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+            <button type="submit" class="btn btn-danger" id="deleteSectionDetails">Sil</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/script') %>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const deleteButtons = document.querySelectorAll(".openModal");
+
+      deleteButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+
+          // Modal için gerekli parametreleri al
+          const sectionCode = button.getAttribute("data-sectionCode");
+          const profileCode = button.getAttribute("data-profileCode");
+          const detailCode = button.getAttribute("data-detailCode");
+
+          const deleteSectionDetails = document.getElementById("deleteSectionDetails");
+
+          // Modal'ı göster
+          const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+          modal.show();
+
+          try{
+            deleteSectionDetails.addEventListener("click", async function (event){
+              event.preventDefault();
+              const response = await fetch(`/dashboard/delete-section-detail?sectionCode=${sectionCode}&profileCode=${profileCode}&detailCode=${detailCode}`,{
+                method: "DELETE"
+              });
+
+              if(response.ok){
+                alert("İşlem Başarılı");
+                button.closest(".card").remove();
+                modal.hide(); 
+              }else{
+                const errorText = await response.text();
+                alert(`Silme İşlemi Başarısız: ${errorText}`)
+              }
+            })
+          }catch(err){
+            console.log("Silme İşlemi Başarısız", err);
+            alert("Silme İşlemi Sırasında Bir Hata Oluştu! Lütfen Daha Sonra Tekrar Deneyin.")
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

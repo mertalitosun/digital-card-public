@@ -1,0 +1,30 @@
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: #a6a2a2;
+    padding: 20px 0px 5px;
+}
+
+footer h5 {
+    font-weight: bold;
+}
+
+footer a{
+    color: #a6a2a2;
+    text-decoration: solid;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer .row div {
+    flex: 1;
+    padding: 20px;
+}
+.footer-hakkimizda{
+    color: #a6a2a2;
+}
+footer .text-center {
+    text-align: center;
+    font-size: 0.9rem;
+}

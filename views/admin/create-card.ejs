@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-5">
+        <% if (message && message.text) { %>
+            <div class="alert alert-<%= message.type %>">
+                <%= message.text %>
+            </div>
+        <% } %>
+        
+        <!-- Kart Kodu Üretme Alanı -->
+        <div class="mb-4">
+            <label for="generatedCode" class="form-label">Oluşan Kart Kodu</label>
+            <input type="text" id="generatedCode" class="form-control" readonly>
+            <button type="button" class="btn btn-secondary mt-2" id="generateCodeBtn">Kod Üret</button>
+        </div>
+
+        <!-- Kart Ekleme Formu -->
+        <form method="POST" action="">
+            <div class="mb-3">
+                <label for="cardCode" class="form-label">Kart Kodu</label>
+                <input type="text" class="form-control" id="cardCode" name="cardCode" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="cardType" class="form-label">Kart Tipi</label>
+                <select name="cardType" id="cardType" class="form-select">
+                    <option value="Dijital Kartvizit">Dijital Kartvizit</option>
+                    <option value="Araç Dijital Kart">Araç Dijital Kart</option>
+                    <option value="Evcil Hayvan Tag">Evcil Hayvan Tag</option>
+                    <option value="İşletme Dijital Kart">İşletme Dijital Kart</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Kart Ekle</button>
+        </form>
+    </div>
+
+    <%- include('../partials/script') %>
+
+    <script>
+        document.getElementById('generateCodeBtn').addEventListener('click', async function() {
+            try {
+                const response = await fetch('/admin/generate-cardCode', {
+                    method: 'GET',  
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Oluşan kart kodunu al
+                    const generatedCode = data.generatedCardCode;
+
+                    // Oluşan kodu formda ve kullanıcıya göster
+                    document.getElementById('generatedCode').value = generatedCode;
+                    document.getElementById('cardCode').value = generatedCode; // Formdaki cardCode input alanına yaz
+                } else {
+                    alert("Kart kodu oluşturulurken bir hata oluştu.");
+                }
+            } catch (error) {
+                console.error('Hata:', error);
+                alert("Kart kodu oluşturulurken bir hata oluştu.");
+            }
+        });
+    </script>
+</body>
+</html>

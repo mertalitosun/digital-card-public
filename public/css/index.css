@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+/* Header */
+header {
+    background: url("../../static/images/infinitetag.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    position: absolute;
+    left: 0;
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Tablo */
+.comparison-table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.comparison-table th {
+    background: linear-gradient(to right, #12a7da,#097cd9);
+    color: white;
+    font-weight: bold;
+}
+
+.comparison-table td {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.comparison-table tr:hover td {
+    background-color: #f1f1f1;
+}
+.bi-x-circle{
+    font-size: 20px;
+    color: red;
+}
+.bi-check-lg{
+    font-size: 20px;
+    color: green;
+}
+
+
+/* Adım Kartları */
+.step-card {
+    min-height: 150px;
+    text-align: center;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.step-card h4 {
+    margin-top: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.step-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+
+/*Service-card*/
+.service-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px;
+}
+
+.service-card {
+    position: relative;
+    width: 250px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.service-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Karartma efekti */
+    z-index: 1;
+}
+
+.service-card-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 2; /* Karartmanın üstünde görünür */
+}
+
+.coming-soon {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffd700;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .service-card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+  

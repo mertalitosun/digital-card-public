@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4 rounded">
+            <h2 class="text-center text-dark mb-4">Yeni Profil Oluştur</h2>
+    
+            <!-- Form Başlangıcı -->
+            <form method="POST" enctype="multipart/form-data">
+                <!-- Profil Resmi ve Arka Plan Resmi -->
+                <div class="mb-3">
+                    <div class="row">
+                        <!-- Profil Resmi -->
+                        <div class="col-md-6">
+                            <label for="profileImage" class="form-label">Profil Resmi</label>
+                            <div class="text-center">
+                                <img src="" alt="" id="profileImagePreview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; border: 4px solid #f0f0f5;">
+                                <input type="file" class="form-control mt-3" id="profileImage" name="profileImage" accept="image/*" required onchange="previewImage(event, 'profileImagePreview')">
+                            </div>
+                        </div>
+        
+                        <!-- Arkaplan Resmi -->
+                        <div class="col-md-6">
+                            <label for="backgroundImage" class="form-label">Arka Plan Resmi</label>
+                            <div class="text-center">
+                                <img src="" alt="" id="backgroundImagePreview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; border: 4px solid #f0f0f5;">
+                                <input type="file" class="form-control mt-3" id="backgroundImage" name="backgroundImage" accept="image/*" required onchange="previewImage(event, 'backgroundImagePreview')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Kullanıcı Adı (Slug) -->
+                <div class="mb-3">
+                    <div class="alert alert-info">
+                        * <b>Kullanıcı adı web site adresinden sonra gelir. <br> *Ad ve Soyadınızı türkçe karakterler olmadan birleşik yazmanız önerilir.</b>
+                        <div class="text-danger mt-1">Örnek:</div>
+                        <p class="text-muted">mertalitosun, tosunmertali, mertalitosuninfinite</p>
+                    </div>
+                    <div class="my-4">
+                        <span class="required text-danger">*</span> <b>Doldurulması zorunlu alanları belirtir.</b> 
+                    </div>
+                    <label for="slug" class="form-label"><span class="required text-danger">*</span> Kullanıcı Adı (Link)</label>
+                    <input type="text" class="form-control" id="slug" name="slug" required oninput="checkSlugAvailability()">
+                    <small id="slugError" class="text-danger" style="display:none;">Bu kullanıcı adı alınmış, lütfen başka bir kullanıcı adı seçin.</small>
+                </div>
+    
+                
+                <!-- Diğer Bilgiler -->
+                <div class="mb-3">
+                    <label for="title" class="form-label"><span class="required text-danger">*</span> Profil Adı</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="name" class="form-label"><span class="required text-danger">*</span> Ad</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="surname" class="form-label"><span class="required text-danger">*</span> Soyad</label>
+                    <input type="text" class="form-control" id="surname" name="surname" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="biography" class="form-label">Biyografi</label>
+                    <textarea name="biography" id="biography" class="form-control" rows="2" maxlength="100"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label"><span class="required text-danger">*</span> Telefon</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required placeholder="(5xx) xxx xxxx" maxlength="10">
+                </div>
+    
+                <div class="mb-3">
+                    <label for="whatsapp" class="form-label"><span class="required text-danger">*</span> WhatsApp</label>
+                    <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required placeholder="(5xx) xxx xxxx" maxlength="10">
+                </div>
+
+                <div class="mb-3">
+                    <label for="company" class="form-label">Şirket Adı</label>
+                    <input type="text" class="form-control" id="company" name="company">
+                </div>
+
+                <div class="mb-3">
+                    <label for="companyUrl" class="form-label">Şirket Web Sitesi</label>
+                    <input type="text" class="form-control" id="companyUrl" name="companyUrl"  placeholder="https://infinitetag.com/">
+                </div>
+
+                <div class="mb-3">
+                    <label for="career" class="form-label">Kariyer</label>
+                    <input type="text" class="form-control" id="career" name="career">
+                </div>
+    
+                <!-- Gönderme Butonu -->
+                <button type="submit" class="btn btn-dark w-100 py-2 mt-3">Profil Oluştur</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Profil ve Arka Plan Resmi Önizleme
+        function previewImage(event, previewId) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById(previewId);
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+    
+    <%- include('../partials/script') %>
+    <script src="/static/js/slug-check.js"></script>
+    
+</body>
+</html>

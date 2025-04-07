@@ -1,0 +1,318 @@
+<div class="container-fluid mt-5">
+  <h1 class="mt-4 text-dark">Profil Detayları</h1>
+  <hr>
+  <h2 class="text-muted mb-3"><%= profile.name + " " + profile.surname %></h2>
+  <div class="bg-light p-4 shadow-lg rounded">
+    <!-- Profil Resmi ve Arkaplan Resmi Alanı -->
+    <div class="mb-4">
+      <form method="POST" action="/dashboard/customer-profile-details/<%= profile.profileCode %>/edit" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col-12 col-md-6 mb-5 d-flex align-items-start">
+            <!-- Profil Resmi -->
+            <div class="text-center position-relative">
+              <img src="../../<%= profile.profileImage %>" alt="" class="img-fluid rounded-circle" style="width: 120px; height: 120px; object-fit: cover; border: 4px solid #f0f0f5;">
+              <input type="file" class="form-control mt-3" id="profileImage" name="profileImage" accept="image/*">
+            </div>
+            <% if (profile.profileImage !== null) { %>
+              <button type="button" class="btn btn-danger delete-image" data-profileImage="<%= profile.profileImage %>" data-profileCode="<%= profile.profileCode %>">Sil</button>
+            <% } %>
+          </div>
+  
+          <div class="col-12 col-md-6 mb-5 d-flex align-items-start">
+            <!-- Arkaplan Resmi -->
+            <div class="text-center position-relative">
+              <img src="../../<%= profile.backgroundImage %>" alt="" class="img-fluid rounded-circle" style="width: 120px; height: 120px; object-fit: cover; border: 4px solid #f0f0f5;">
+              <input type="file" class="form-control mt-3" id="backgroundImage" name="backgroundImage" accept="image/*">
+            </div>
+            <% if (profile.backgroundImage !== null) { %>
+              <button type="button" class="btn btn-danger delete-image" data-backgroundImage="<%= profile.backgroundImage %>" data-profileCode="<%= profile.profileCode %>">Sil</button>
+            <% } %>
+          </div>
+        </div>
+  
+        <div class="my-4">
+          <span class="required">*</span> <b>Doldurulması zorunlu alanları belirtir.</b> 
+        </div>
+        <!-- Diğer Form Alanları -->
+        <div class="mb-3">
+          <label for="title" class="form-label"><span class="required">*</span> Profil Başlığı</label>
+          <input type="text" class="form-control shadow-sm" id="title" name="title" value="<%= profile.title %>" required>
+        </div>
+  
+        <div class="mb-3">
+          <label for="name" class="form-label"><span class="required">*</span> Adı</label>
+          <input type="text" class="form-control shadow-sm" id="name" name="name" value="<%= profile.name %>" required>
+        </div>
+  
+        <div class="mb-3">
+          <label for="surname" class="form-label"><span class="required">*</span> Soyadı</label>
+          <input type="text" class="form-control shadow-sm" id="surname" name="surname" value="<%= profile.surname %>" required>
+        </div>
+  
+        <div class="mb-3">
+          <label for="biography" class="form-label">Biyografi</label>
+          <textarea name="biography" id="biography" class="form-control" rows="2" maxlength="100"><%= profile.biography %></textarea>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="slug" class="form-label">Profil Link</label>
+          <input type="text" class="form-control shadow-sm" id="slug" name="slug" value="<%= profile.slug %>" disabled>
+        </div>
+  
+        <div class="mb-3">
+          <label for="phone" class="form-label"><span class="required">*</span> Telefon</label>
+          <input type="text" class="form-control shadow-sm" id="phone" name="phone" value="<%= profile.phone %>" required maxlength="12" placeholder="(5xx) xxx xxxx">
+        </div>
+  
+        <div class="mb-3">
+          <label for="whatsapp" class="form-label"><span class="required">*</span> WhatsApp</label>
+          <input type="text" class="form-control shadow-sm" id="whatsapp" name="whatsapp" value="<%= profile.whatsapp %>" required maxlength="12" placeholder="(5xx) xxx xxxx">
+        </div>
+  
+        <div class="mb-3">
+          <label for="company" class="form-label">Şirket Adı</label>
+          <input type="text" class="form-control" id="company" name="company" value="<%= profile.company %>">
+        </div>
+  
+        <div class="mb-3">
+          <label for="companyUrl" class="form-label">Şirket Web Sitesi</label>
+          <input type="text" class="form-control" id="companyUrl" name="companyUrl" value="<%= profile.companyUrl %>">
+        </div>
+  
+        <div class="mb-3">
+          <label for="career" class="form-label">Kariyer</label>
+          <input type="text" class="form-control" id="career" name="career" value="<%= profile.career %>">
+        </div>
+  
+        <button type="submit" class="btn btn-dark w-100 py-2 mt-3">Güncelle</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <div class="mt-5">
+    <div class="d-flex align-items-center justify-content-between">
+      <h1 class="text-dark mb-3">Bölümler</h1>
+      <% if (profile.sections.length < profile.max_sections ) { %>
+        <div class="text-end mb-3">
+          <a href="/dashboard/create-section?profileCode=<%= profile.profileCode %>" class="btn btn-outline-success btn-sm">Yeni Bölüm Oluştur</a>
+        </div>
+      <% }  %>
+    </div>
+    <hr>
+    <% profile.sections.forEach(section => { %>
+      <div class="card shadow-sm mb-4" style="border-radius: 16px;">
+        <div class="card-header  text-dark d-flex justify-content-between" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+          <div>
+            <strong><%= section.title %>  <a href="/dashboard/edit-section?sectionCode=<%= section.sectionCode %>&profileCode=<%= profile.profileCode %>" class="btn btn-secondary btn-sm mx-1">İsmi Değiştir <i class="bi bi-pencil-fill"></i></a></strong>
+          </div>
+          <div class="d-flex align-items-center justify-content-end">
+            <a href="#" class="btn btn-outline-danger openModal btn-sm" data-sectionCode="<%= section.sectionCode %>" data-profileCode="<%= profile.profileCode %>">Sil</a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-end">
+            <a href="/dashboard/edit-section-detail?sectionCode=<%= section.sectionCode %>&profileCode=<%= profile.profileCode %>" class="btn btn-outline-warning btn-sm mx-1">Düzenle</a>
+            <% if (section.details.length < section.max_details) { %>
+              <a href="/dashboard/create-section-detail?sectionCode=<%= section.sectionCode %>&profileCode=<%= profile.profileCode %>" class="btn btn-outline-success btn-sm mx-1">Ekle</a>
+            <% } %>
+          </div>
+            
+        <% section.details.forEach(detail => { %>
+          <div class="card shadow p-3 my-3">
+            <p><strong><%= detail.name %></strong></p>
+            <p><strong>Link:</strong> <%= detail.url ? detail.url : "Link Belirtilmemiş" %></p>
+            <p><strong>Açıklama:</strong> <%= detail.value %></p>
+          </div>
+        <% }); %>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+
+  <!-- Buttonlar -->
+  <div class="mt-5">
+    <div class="card shadow-sm mb-4" style="border-radius: 16px;">
+      <div class="card-header  text-dark d-flex justify-content-between align-items-center" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+        <h1>Özel Butonlar</h1>
+        <% if (profile.buttons.length < profile.max_special_buttons) { %>
+          <div class="text-end">
+            <a href="/dashboard/create-button?profileCode=<%= profile.profileCode %>" class="btn btn-outline-success btn-sm">Yeni Buton Oluştur</a>
+          </div>
+        <% } %>
+      </div>
+      <% profile.buttons.forEach(button => { %>
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-end">
+            <a href="/dashboard/edit-button?profileCode=<%= profile.profileCode %>&buttonCode=<%= button.buttonCode %>" class="btn btn-outline-warning btn-sm mx-1">Butonu Düzenle</a>
+            <a href="#" data-profileCode="<%= profile.profileCode %>" data-buttonCode="<%= button.buttonCode %>" class="btn btn-outline-danger btn-sm mx-1 deleteButtons">Butonu Sil</a>
+          </div>
+
+          <div class="card shadow p-3 my-3">
+            <h3 style="color: #000;"><%= button.text %></h3>
+            <p><strong>Link:</strong> <%= button.url %></p>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+  </div>
+</div>
+
+<!-- Silme Onayı Modali Section -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Silme İşlemini Onayla</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Bu öğeyi silmek istediğinizden emin misiniz?
+        </div>
+        <div class="modal-footer">
+          <form id="deleteForm">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+            <button type="submit" class="btn btn-danger" id="deleteSection">Sil</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Silme Onayı Modali Button-->
+<div class="modal fade" id="deleteModalButton" tabindex="-1" aria-labelledby="deleteModalButtonLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalButtonLabel">Silme İşlemini Onayla</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bu öğeyi silmek istediğinizden emin misiniz?
+      </div>
+      <div class="modal-footer">
+        <form id="deleteForm">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+          <button type="submit" class="btn btn-danger" id="deleteButton">Sil</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const deleteSectionButton = document.querySelectorAll(".openModal");
+    const deleteButtons = document.querySelectorAll(".deleteButtons");
+
+    deleteSectionButton.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Modal için gerekli parametreleri al
+        const sectionCode = button.getAttribute("data-sectionCode");
+        const profileCode = button.getAttribute("data-profileCode");
+
+        const deleteSection = document.getElementById("deleteSection");
+
+        // Modal'ı göster
+        const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        modal.show();
+
+        try{
+          deleteSection.addEventListener("click", async function (event){
+            event.preventDefault();
+            const response = await fetch(`/dashboard/delete-section?sectionCode=${sectionCode}&profileCode=${profileCode}`,{
+              method: "DELETE"
+            });
+
+            if(response.ok){
+              alert("İşlem Başarılı");
+              button.closest(".card").remove();
+              modal.hide(); 
+            }else{
+              const errorText = await response.text();
+              alert(`Silme İşlemi Başarısız: ${errorText}`)
+            }
+          })
+        }catch(err){
+          console.log("Silme İşlemi Başarısız", err);
+          alert("Silme İşlemi Sırasında Bir Hata Oluştu! Lütfen Daha Sonra Tekrar Deneyin.")
+        }
+      });
+    });
+
+
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Modal için gerekli parametreleri al
+        const profileCode = button.getAttribute("data-profileCode");
+        const buttonCode = button.getAttribute("data-buttonCode");
+
+        const deleteButton = document.getElementById("deleteButton");
+
+        // Modal'ı göster
+        const modal = new bootstrap.Modal(document.getElementById('deleteModalButton'));
+        modal.show();
+
+        try{
+          deleteButton.addEventListener("click", async function (event){
+            event.preventDefault();
+            const response = await fetch(`/dashboard/delete-button?buttonCode=${buttonCode}&profileCode=${profileCode}`,{
+              method: "DELETE"
+            });
+
+            if(response.ok){
+              alert("İşlem Başarılı");
+              button.closest(".card-body").remove();
+              modal.hide();
+              location.reload();
+            }else{
+              const errorText = await response.text();
+              alert(`Silme İşlemi Başarısız: ${errorText}`)
+            }
+          })
+        }catch(err){
+          console.log("Silme İşlemi Başarısız", err);
+          alert("Silme İşlemi Sırasında Bir Hata Oluştu! Lütfen Daha Sonra Tekrar Deneyin.")
+        }
+      });
+    });
+
+    //Resim Silme
+    const deleteImage = document.querySelectorAll(".delete-image");
+    deleteImage.forEach(deleteBtn => {
+      deleteBtn.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        const profileImage = deleteBtn.getAttribute("data-profileImage");
+        const backgroundImage = deleteBtn.getAttribute("data-backgroundImage");
+        const profileCode = deleteBtn.getAttribute("data-profileCode");
+
+        try{
+          const response = await fetch(`/dashboard/delete-images`,{
+            method: "POST",
+            headers:{
+              "content-type":"application/json"
+            },
+            body: JSON.stringify({profileImage,backgroundImage,profileCode})
+          })
+
+          if(response.ok){
+            alert("İşlem Başarılı");
+            location.reload();
+          }else{
+            const errorText = await response.text();
+            alert(`Silme İşlemi Başarısız: ${errorText}`)
+          }
+        }catch(err){
+          console.log("Silme İşlemi Başarısız", err);
+          alert("Silme İşlemi Sırasında Bir Hata Oluştu! Lütfen Daha Sonra Tekrar Deneyin.")
+        }
+      })
+    })
+  });
+</script>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+  <%- include('../partials/profileViewCss') %>
+
+    <link rel="stylesheet" href="/static/css/card-details.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-8 col-12">
+                <h1 class="text-dark mb-3">Yeni Bilgi Ekle</h1>
+                <div class="card shadow-lg rounded border border-0">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="sectionDetailName" class="form-label">Bilgi Adı</label>
+                                    <input type="text" class="form-control shadow-sm" id="sectionDetailName" name="sectionDetailName" placeholder="Yeni detay adı" required oninput="updatePreview()">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="sectionDetailLink" class="form-label">Link <span class="text-muted">(Yönlendirme linkidir)</span></label>
+                                    <input type="text" class="form-control shadow-sm" id="sectionDetailLink" name="sectionDetailLink" placeholder="Yeni detay link">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="sectionDetailValue" class="form-label">Açıklama <span class="text-muted">(Kartvizitinizde gözükür)</span></label>
+                                    <input type="text" class="form-control shadow-sm" id="sectionDetailValue" name="sectionDetailValue" placeholder="Yeni detay açıklama" oninput="updatePreview()">
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex align-items-center">
+                                <button type="submit" class="btn btn-primary w-100 py-2">Ekle</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <h1 class="text-dark mb-3">Önizleme</h1>
+                <div class="social-links">
+                      <div class="card shadow-sm mb-4 section-card">
+                        <div class="section-card-header">
+                          <h3 class="section-title"><%= section.title %></h3>
+                        </div>
+                        <div class="section-card-body">
+                            <div class="detail-item">
+                            <a href="" target="_blank" class="detail-link">
+                                <div class="social-item">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-link-45deg social-icon"></i>
+                                        <div>
+                                            <div class="detail-name" id="previewName">
+                                                <%= section.title == "Sosyal Medya" ? "Instagram" : (section.title == "Banka Hesapları" ? "Yapıkredi" : "Bilgi Adı") %>
+                                            </div>
+                                            <div class="detail-value" id="previewValue">
+                                                <%= section.title == "Sosyal Medya" ? "infinitetag" : (section.title == "Banka Hesapları" ? "TR1111111111111111" : "Açıklama") %>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <%- include('../partials/script') %>
+    <script>
+        function updatePreview() {
+            let name = document.getElementById("sectionDetailName").value;
+            let value = document.getElementById("sectionDetailValue").value;
+            const sectionTitle = document.querySelector(".section-title").innerHTML;
+            // Eğer boşsa, varsayılan metin göster
+            document.getElementById("previewName").textContent = name || (sectionTitle == "Sosyal Medya" ? "Instagram" : (sectionTitle == "Banka Hesapları" ? "Yapıkredi" : "Bilgi Adı"));
+            document.getElementById("previewValue").textContent = value || (sectionTitle == "Sosyal Medya" ? "infinitetag" : (sectionTitle == "Banka Hesapları" ? "TR1111111111111111" : "Açıklama"));
+        }
+    </script>
+</body>
+</html>

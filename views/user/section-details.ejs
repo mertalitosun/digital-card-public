@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+  <link rel="stylesheet" href="/static/css/card-details.css">
+</head>
+<body>
+  <%- include('../partials/nav') %>
+
+    <div class="container">
+        <h1><%= section.title %></h1>
+        <form method="POST">
+          <% if (section) { %>
+              <div class="card mb-3">
+                <div class="form-group mb-3">
+                  <label>Alan Adı</label>
+                  <input type="text" id="sectionTitle" name="sectionTitle"  value="<%= section.title %>" 
+                  class="form-control"
+                  required>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary">Değiştir</button>
+          <% } else { %>
+            <p>Gösterilecek alan bulunamadı.</p>
+          <% } %>
+        </form>
+    </div>
+  <%- include('../partials/script') %>
+</body>
+</html>

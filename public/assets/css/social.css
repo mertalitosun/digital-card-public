@@ -1,0 +1,140 @@
+/* Genel Sosyal Bağlantılar */
+.social-links {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 5px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 12px;
+    position: relative;
+    background: rgba(238, 238, 238, 0.3);
+    backdrop-filter: blur(15px);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.social-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-item:last-child {
+    border-bottom: none;
+}
+
+.social-icon {
+    font-size: 30px;
+    color: #6a11cb;
+    margin-right: 15px;
+}
+
+.bi-instagram {
+    color: #8134AF;
+}
+
+.bi-facebook {
+    color: #3B5998;
+}
+
+.bi-linkedin {
+    color: #0077B5;
+}
+
+.social-username {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.detail-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Kopyalama İkonu */
+.copy-icon {
+    font-size: 24px;
+    color: #6a11cb;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.copy-icon:hover {
+    color: #2575fc;
+}
+
+/* Bölüm Kartları */
+.section-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    background: linear-gradient(145deg, #ffffff, #f9f9f9);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.section-card-header {
+    background: linear-gradient(90deg, #6a11cb, #2575fc); 
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.section-card-body {
+    padding: 20px;
+}
+
+.detail-item {
+    margin-bottom: 20px;
+}
+
+.detail-item.no-link {
+    background-color: #e9ecef;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-item.no-link:hover {
+    background-color: #dcdde1;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.detail-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Sosyal İkonların Farklı Görünümleri */
+.social-icon {
+    font-size: 2.5rem;
+    color: #6a11cb;
+    margin-right: 10px;
+}

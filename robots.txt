@@ -1,0 +1,9 @@
+User-agent: * 
+Disallow: /admin/       
+Disallow: /dashboard/       
+Disallow: /tag/       
+Disallow: /login/       
+Disallow: /register/       
+
+
+

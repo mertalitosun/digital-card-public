@@ -1,0 +1,123 @@
+/* Genel Ayarlar */
+body {
+    background-color: #f7f7f7; /* Açık gri arka plan */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333; /* Koyu yazı rengi */
+}
+
+.container {
+    max-width: 480px;
+}
+
+.login-container {
+    padding: 30px 30px 20px 30px;
+    margin: auto;
+    border-bottom: 1px solid #e0e0e0; /* Gri sınır */
+    border-top: 1px solid #e0e0e0; /* Gri sınır */
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #333; /* Koyu başlık rengi */
+    text-align: center;
+}
+
+.form-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555; /* Hafif gri etiket rengi */
+}
+
+.form-control {
+    background-color: #f7f7f7; /* Açık gri arka plan */
+    color: #333; /* Koyu yazı rengi */
+    border: 1px solid #ddd; /* Açık gri kenarlık */
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: #fff; /* Beyaz odaklanıldığında */
+    border-color: #888; /* Daha belirgin odak kenarlığı */
+}
+
+.position-relative {
+    position: relative;
+}
+
+.bi-eye-fill {
+    color: #888;
+    font-size: 1.5rem;
+}
+
+.bi-eye-fill:hover {
+    color: #333;
+}
+
+/* Buton Stili */
+button {
+    background-color: #007bff; /* Mavi buton */
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.login-button {
+    background-color: #007bff; /* Mavi buton */
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(1);
+}
+
+/* Footer */
+.login-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-footer a {
+    color: #686666;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-footer a:hover {
+    color: #333;
+}
+
+/* Responsiveness */
+@media (max-width: 576px) {
+    .login-container {
+        padding: 20px;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .form-control {
+        font-size: 0.95rem;
+    }
+
+    button {
+        font-size: 1rem;
+    }
+}

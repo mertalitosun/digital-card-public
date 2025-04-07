@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/static/css/activation-card.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="activation-container">
+        <% if (message) { %>
+            <div class="alert alert-<%= message.type %>">
+                <%= message.text %>
+            </div>
+        <% } %>
+        <div class="activation-title">Kart Aktivasyon</div>
+        <form method="POST">
+            <div class="mb-4">
+                <label for="activationCode" class="form-label">Aktivasyon Kodu</label>
+                <input 
+                    type="text" 
+                    id="activationCode" 
+                    name="activationCode" 
+                    class="form-control activation-input" 
+                    placeholder="XXXX-XXXX-XXXX" 
+                    required>
+            </div>
+            <button type="submit" class="btn btn-dark w-100 activation-btn">Aktive Et</button>
+        </form>
+    </div>
+
+    <%- include('../partials/script') %>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('../partials/head') %>
+   <link rel="stylesheet" href="/static/css/register.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+ 
+    <div class="container mt-3 register-container">
+        <% if (message && message.text) { %>
+            <div class="alert alert-<%= message.type %>">
+                <%= message.text %>
+            </div>
+        <% } %>
+        <%- include('../partials/password-rules') %>
+        <h3 class="text-center">Kayıt Ol</h3>
+        <form method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Ad</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="surname" class="form-label">Soyad</label>
+                <input type="text" class="form-control" id="surname" name="surname" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-Posta</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3 position-relative">
+                <label for="password" class="form-label">Şifre</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <i class="bi bi-eye-fill position-absolute" id="eye-toggleBtn" style="right: 15px; top: 40px; cursor: pointer;"></i>
+            </div>
+            <button type="submit" class="btn register-button w-100">Kayıt Ol</button>
+        </form>
+        <div class="register-footer">
+            <span>Zaten bir hesabınız var mı? <a href="/login">Giriş Yapın</a></span>
+        </div>
+    </div>
+   
+
+    <%- include('../partials/script') %>
+    <script src="/static/js/password-hide.js"></script>
+    <script src="/static/js/password-check.js"></script>
+</body>
+</html>

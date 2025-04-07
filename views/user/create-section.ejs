@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/static/css/card-details.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-5">
+        <h1 class="text-dark mb-3">Yeni Alan Ekle</h1>
+        <div class="card shadow-lg rounded p-5">
+            <div class="text-danger">Öneriler:</div>
+            <ul class="suggested-sections">
+                <li><button type="button" class="btn btn-outline-info suggested-section-button">Sosyal Medya</button></li>
+                <li><button type="button" class="btn btn-outline-info suggested-section-button">Banka Hesapları</button></li>
+                <li><button type="button" class="btn btn-outline-info suggested-section-button">İletişim</button></li>
+            </ul>
+            <form method="POST">
+                <div class="row">
+                    <div class="col-12 col-md-10">
+                        <div class="mb-3">
+                            <label for="sectionName" class="form-label">Alan Adı</label>
+                            <input type="text" class="form-control shadow-sm" id="sectionName" name="sectionName" placeholder="Yeni alan adı" required>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2 d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary w-100 py-2">Ekle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../partials/script') %>
+    <script>
+        const suggestedSectionButton = document.querySelectorAll(".suggested-section-button");
+        const sectionName = document.getElementById("sectionName");
+        suggestedSectionButton.forEach(button=>{
+            button.addEventListener("click",()=>{
+                sectionName.value = button.innerHTML
+            })
+        })
+    </script>
+</body>
+</html>
